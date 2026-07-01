@@ -1,0 +1,8 @@
+* Command aliases for PSice models
+
+.func LIMIT(x,a,b) {min(max(x, a), b)}
+.func PWR(x,a) {abs(x) ** a}
+.func PWRS(x,a) {sgn(x) * PWR(x,a)}
+.func stp(x) {u(x)}
+.func limpow(x,y) { (x <= 0) ? 0  : 2*PWR(x,y) }
+.func plog(x)  { (x <= 0) ? 1u  : log(x) }

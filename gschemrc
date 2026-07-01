@@ -1,0 +1,6 @@
+(load "commonrc")
+(snap-size 100)
+(text-size 8)
+(define gschem_local_lib "gschem")
+(component-library gschem_local_lib)
+(source-library gschem_local_lib)

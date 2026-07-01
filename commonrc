@@ -1,0 +1,6 @@
+(define current-working-directory (getenv "PWD"))
+(component-library  current-working-directory)
+(source-library  current-working-directory)
+(define gschem_local_lib "/home/dom/Elec/work/gschem")
+(component-library gschem_local_lib)
+(source-library gschem_local_lib)
