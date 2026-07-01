@@ -7,9 +7,9 @@ The main use cases are two:
 
 1) is to have fun using ngspice to make movies.
 
-2) is to get a practical to use result when some ngspice parametric ngspice simulation just gives so many plots files that it is not practical to compare them.
+2) is to get a practical way to use simulation results when they just gives too many plots.
 
-Making a video allow us to navigate into the result as we choose.
+Making a video allow us to navigate into the results as we want.
 
 To work and be useful, we use a Simulation.cmd file that run the parametric simulations, change the titles of the plots and show us what parameters was used for each single plot.
 
