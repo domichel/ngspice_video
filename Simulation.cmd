@@ -61,8 +61,10 @@ foreach val_cl 1000m 500m 220m 163m 100m 50m 16.3m 10m 5m 1.63m 1m 500u 163u 100
 *	plot (v(1)-v(sortie))*((v(6)-v(sortie))/2.7e3) xlabel "Cl = $val_cl" title "Cl = $val_cl"
 	hardcopy p{$fnb}cl={$val_cl}c2={$val_c2}.ps (168-v(sortie))*(v(1)-v(sortie))/2700 v(2) xlabel "{$fnb}: P Cl = $val_cl C2 = $val_c2" title "P and Vg2 Cl = $val_cl C2 = $val_c2"
      shell magick {$fnb}cl={$val_cl}c2={$val_c2}.ps {$fnb}cl={$val_cl}c2={$val_c2}.png
+*     To keep the ps files, comment that line:
      shell rm  {$fnb}cl={$val_cl}c2={$val_c2}.ps
      shell magick  p{$fnb}cl={$val_cl}c2={$val_c2}.ps  p{$fnb}cl={$val_cl}c2={$val_c2}.png
+*	And that line:
      shell rm p{$fnb}cl={$val_cl}c2={$val_c2}.ps
 
     * populate index file
