@@ -1,7 +1,7 @@
 This repo demonstrate how to use ngspice to make videos.
 ========================================================
 
-It is also a good example on how to use 2 Foreach loops into a ngspice command file.
+It is also a good example on how to use 2 Foreach loops into a ngspice command file to run successive parametric simulations with different parameters.
 
 The main use cases are two:
 
