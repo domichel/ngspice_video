@@ -44,4 +44,4 @@ NB: The gschem dirctory is provided as it. It contain a gschem symbol for the EF
 
 Copyright Dominique Michel 2026
 
-This software, examples and documentation are licensed under the GPL v. 1.3 or later.
+This software, examples and documentation are licensed under the GPL-3.0 license.
