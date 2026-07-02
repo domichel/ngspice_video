@@ -11,6 +11,8 @@ The main use cases are two:
 
 Making a video allow us to navigate into the results as we want.
 
+To watch 2 example videos made with that simulation, see https://www.youtube.com/watch?v=oyno5S3Gqs4 and the same with inverted colors: https://www.youtube.com/watch?v=44GZ5FE5tSQ
+
 To work and be useful, we use a Simulation.cmd file that run the parametric simulations, change the titles of the plots and show us what parameters was used for each single plot.
 
 To run the complete simulation (a 250usec transient simulation of a vacuum tube Clapp oscillator at atartup) run
