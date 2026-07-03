@@ -40,6 +40,8 @@ will do the same identical videos with a length of almost 25 minutes.
 	./makevideos 6
 may or not be a good compromise between readabilty and video length.
 
+To adjust the ffmpeg options, read ir's documentation and see https://www.gumlet.com/learn/ffmpeg-images-to-video/
+
 NB: The gschem dirctory is provided as it. It contain a gschem symbol for the EF89 and a few other files.
 
 Copyright Dominique Michel 2026
