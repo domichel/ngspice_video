@@ -50,16 +50,24 @@ echo -n "" > index.txt
 *** the command loop ***
 ** Initialise the parametric loop, we iterate 2 values, Cl and C2. **
 *foreach val_ra 10k 33k 100k 330k
-foreach val_cl 1000m 500m 220m 163m 100m 50m 16.3m 10m 5m 1.63m 1m 500u 163u 100u 50u 16.3u 10u
-    foreach val_c2 22p 27p 33p 39p 47p 56p 68p 82p 100p 120p 150p 180p 220p 270p 330p 390p 470p 560p 680p 820p 1000p 1200p 1500p 1800p 2200p 2.7n 3.3n 3.9n 4.7n 5.6n 6.8n 8.2n 10n 12n 15n 18n 22n 33n 39n 47n 56n 68n 82n 100n
+* For testing, uncomment the short version and comment the long version *
+* Long version *
+*foreach val_cl 1000m 500m 220m 163m 100m 50m 16.3m 10m 5m 1.63m 1m 500u 163u 100u 50u 16.3u 10u
+*    foreach val_c2 22p 27p 33p 39p 47p 56p 68p 82p 100p 120p 150p 180p 220p 270p 330p 390p 470p 560p 680p 820p 1000p 1200p 1500p 1800p 2200p 2.7n 3.3n 3.9n 4.7n 5.6n 6.8n 8.2n 10n 12n 15n 18n 22n 33n 39n 47n 56n 68n 82n 100n
+* short version *
+foreach val_cl 50m 1m 10u
+    foreach val_c2 270p  4.7n 100n
+** End loop inizialisation **
 
 ** Set the loop variables **
 *    alter Ra $val_ra
     alter Cl $val_cl
     alter C2 $val_c2
 
-** Output what we will run **
-    echo Running simulation {$fnb} with Ra = {$val_ra}, Cl = {$val_cl} and C2 = {$val_c2}
+** Make a separation in the console output and output what will be run **
+    echo ""
+    echo # # # Running simulation {$fnb} with Ra = {$val_ra}, Cl = {$val_cl} and C2 = {$val_c2} # # #
+    echo ""
 
 ** Print a listing of the current circuit **
 *	listing e
