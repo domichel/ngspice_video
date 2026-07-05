@@ -10,21 +10,27 @@
 
 * See READNE.md for details.
 
+** Needed by the EF89 model **
 .INCLUDE pspice.alias
 
+** Start the control section **
 .control
-*.options method = gear
 
+** integration method for TRAN simulation, default trapezoidal **
+*.options method = gear
+*	option xmu=0.495 * Damping factor for trap integration
+
+*** initialisations ***
+** variables **
 set val_ra = 10k
-*let start_ra = 10k
-*let stop_ra = 330k
-*let step_c1 = 1n
 let val_cl = 1000m
 
+** We start the file name count at 1000. If you need more, start use 10000 (not tested).
 let filenb = 1000
-let step_a = 1
+* let step_a = 1 $ not used
 set fnb = $&filenb
 
+** hardcopy options **
 set hcopydevtype=postscript
 set hcopypscolor=1
 *set color0=rgb:F/F/F $ background
@@ -38,43 +44,50 @@ set hcopypscolor=1
 *set color8=rgb:6/F/6
 *set color9=rgb:9/F/9
 
-* create mplayer input file: TODO: resume aborted run
+** create an index file **
 echo -n "" > index.txt
-* loop 1 - choose one
-* foreach val_ra 10k 33k 100k 330k
+
+*** the command loop ***
+** Initialise the parametric loop, we iterate 2 values, Cl and C2. **
+*foreach val_ra 10k 33k 100k 330k
 foreach val_cl 1000m 500m 220m 163m 100m 50m 16.3m 10m 5m 1.63m 1m 500u 163u 100u 50u 16.3u 10u
-    alter Ra $val_ra
+    foreach val_c2 22p 27p 33p 39p 47p 56p 68p 82p 100p 120p 150p 180p 220p 270p 330p 390p 470p 560p 680p 820p 1000p 1200p 1500p 1800p 2200p 2.7n 3.3n 3.9n 4.7n 5.6n 6.8n 8.2n 10n 12n 15n 18n 22n 33n 39n 47n 56n 68n 82n 100n
+
+** Set the loop variables **
+*    alter Ra $val_ra
     alter Cl $val_cl
+    alter C2 $val_c2
 
-	* boucle2
-	foreach val_c2 22p 27p 33p 39p 47p 56p 68p 82p 100p 120p 150p 180p 220p 270p 330p 390p 470p 560p 680p 820p 1000p 1200p 1500p 1800p 2200p 2.7n 3.3n 3.9n 4.7n 5.6n 6.8n 8.2n 10n 12n 15n 18n 22n 33n 39n 47n 56n 68n 82n 100n
-	alter C2 $val_c2
-
+** Output what we will run **
     echo Running simulation {$fnb} with Ra = {$val_ra}, Cl = {$val_cl} and C2 = {$val_c2}
-*	option xmu=0.495
-	listing e
+
+** Print a listing of the current circuit **
+*	listing e
+
+** Run the simulation **
 	TRAN 5n 250u 0 5n UIC
-	* for testing, comment out the plot commands, and comment the hardcopy and shell commands.
-*	plot v(sortie) v(7) v(grille) xlabel "Cl = $val_cl C2 = $val_c2" title "Cl = $val_cl C2 = $val_c2"
+
+** Write the corresponding plot png files, 2 per iteration **
 	hardcopy {$fnb}cl={$val_cl}c2={$val_c2}.ps v(sortie) v(7) v(grille) xlabel "{$fnb}: Cl = $val_cl C2 = $val_c2" title "Cl = $val_cl C2 = $val_c2"
-	* 330 is R4 value:
-*	plot (v(1)-v(sortie))*((v(6)-v(sortie))/2.7e3) xlabel "Cl = $val_cl" title "Cl = $val_cl"
-	hardcopy p{$fnb}cl={$val_cl}c2={$val_c2}.ps (168-v(sortie))*(v(1)-v(sortie))/2700 v(2) xlabel "{$fnb}: P Cl = $val_cl C2 = $val_c2" title "P and Vg2 Cl = $val_cl C2 = $val_c2"
      shell magick {$fnb}cl={$val_cl}c2={$val_c2}.ps {$fnb}cl={$val_cl}c2={$val_c2}.png
 *     To keep the ps files, comment that line:
      shell rm  {$fnb}cl={$val_cl}c2={$val_c2}.ps
+	hardcopy p{$fnb}cl={$val_cl}c2={$val_c2}.ps (168-v(sortie))*(v(1)-v(sortie))/2700 v(2) xlabel "{$fnb}: P Cl = $val_cl C2 = $val_c2" title "P and Vg2 Cl = $val_cl C2 = $val_c2"
      shell magick  p{$fnb}cl={$val_cl}c2={$val_c2}.ps  p{$fnb}cl={$val_cl}c2={$val_c2}.png
 *	And that line:
      shell rm p{$fnb}cl={$val_cl}c2={$val_c2}.ps
 
-    * populate index file
-    * for testing comment the echo calls.
+** Populate the index file **
     echo "{$fnb}cl={$val_cl}c2={$val_c2}.png" >> index.txt
     echo "p{$fnb}cl={$val_cl}c2={$val_c2}.png" >> index.txt
-    * increment file number
+
+** Increment the file number **
     let filenb = $&filenb + 1
     set fnb = $&filenb
+
+** Return to top of the loop for the next iteration **
     end
 end
 
+** We are done **
 .endc
