@@ -19,7 +19,7 @@ It is 2 main files: Clapp_pentode_1.cir is the ngspice net list of a Clapp vacuu
 
 It is a few auxialiary file. EF89.inc contain the valve model used into the simulation. The EF89Ayumi.inc, is another model for that tube. Not tested at that time if it will work but it is a nice model too.
 
-Clapp_pentode_1.sch is the gschem schematic used to generate Clapp_pentode_1.cir. It should work with the Lepton EDA too. Ra is connected between the + supply and the G2 of the EF89. I didn't get the time to change it, but for it doesn't matter for that simulation. In the real circuits I made with that oscillator, the valve is used as a triode with its G2 directly connected with its anode to the + supply. That too doesn't matter for that simulation.
+Clapp_pentode_1.sch is the gschem schematic used to generate Clapp_pentode_1.cir. It should work with the Lepton EDA too. Ra is connected between the + supply and the G2 of the EF89. I didn't get the time to change its name, but it doesn't matter for that simulation. In the real circuits I made with that oscillator, the valve is used as a triode with its G2 directly connected with its anode to the + supply. That too doesn't matter for that simulation.
 
 To run the complete simulation (a 250usec transient simulation of that vacuum tube Clapp oscillator at atartup) run
 
