@@ -76,11 +76,13 @@ foreach val_cl 50m 1m 10u
 	TRAN 5n 250u 0 5n UIC
 
 ** Write the corresponding plot png files, 2 per iteration **
-	hardcopy {$fnb}cl={$val_cl}c2={$val_c2}.ps v(sortie) v(7) v(grille) xlabel "{$fnb}: Cl = $val_cl C2 = $val_c2" title "Cl = $val_cl C2 = $val_c2"
+* Use hardcopy to get videos of scientific plots *
+* hardcopy use the x range used by the TRAN command for all plots, but to avoid jumping in the image, use the same [ hlimit ylo yhi ] for all the plots. *
+	hardcopy {$fnb}cl={$val_cl}c2={$val_c2}.ps v(sortie) v(7) v(grille) ylimit -150 +200  xlabel "{$fnb}: Cl = $val_cl C2 = $val_c2" title "Cl = $val_cl C2 = $val_c2"
      shell magick {$fnb}cl={$val_cl}c2={$val_c2}.ps {$fnb}cl={$val_cl}c2={$val_c2}.png
 *     To keep the ps files, comment that line:
      shell rm  {$fnb}cl={$val_cl}c2={$val_c2}.ps
-	hardcopy p{$fnb}cl={$val_cl}c2={$val_c2}.ps (168-v(sortie))*(v(1)-v(sortie))/2700 v(2) xlabel "{$fnb}: P Cl = $val_cl C2 = $val_c2" title "P and Vg2 Cl = $val_cl C2 = $val_c2"
+	hardcopy p{$fnb}cl={$val_cl}c2={$val_c2}.ps (168-v(sortie))*(v(1)-v(sortie))/2700 v(2) ylimit -150 +200  xlabel "{$fnb}: P Cl = $val_cl C2 = $val_c2" title "P and Vg2 Cl = $val_cl C2 = $val_c2"
      shell magick  p{$fnb}cl={$val_cl}c2={$val_c2}.ps  p{$fnb}cl={$val_cl}c2={$val_c2}.png
 *	And that line:
      shell rm p{$fnb}cl={$val_cl}c2={$val_c2}.ps
