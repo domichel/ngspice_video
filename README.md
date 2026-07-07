@@ -17,7 +17,7 @@ To work and be useful, we use a Simulation.cmd file that run the parametric simu
 
 It is 2 main files: Clapp_pentode_1.cir is the ngspice net list of a Clapp vacuum tube oscillator. At the end of it, we include Simulation.cmd, a ngspice command file that tell ngespice what to do. Read the comments into that file.
 
-It is a few auxialiary file. EF89.inc contain the valve model used into the simulation. The EF89Ayumi.inc, is another model for that tube. Not tested at that time if it will work but it is a nice model too.
+It is a few auxiliary files. EF89.inc contain the valve model used into the simulation. The EF89Ayumi.inc, is another model for that tube. Not tested at that time if it will work but it is a nice spice model too.
 
 Clapp_pentode_1.sch is the gschem schematic used to generate Clapp_pentode_1.cir. It should work with the Lepton EDA too. Ra is connected between the + supply and the G2 of the EF89. I didn't get the time to change its name, but it doesn't matter for that simulation. In the real circuits I made with that oscillator, the valve is used as a triode with its G2 directly connected with its anode to the + supply. That too doesn't matter for that simulation.
 
@@ -25,8 +25,9 @@ To run the complete simulation (a 250usec transient simulation of that vacuum tu
 
 	ngspice Clapp_pentode_1.cir
 
-This will generate 1496 plot files, can take a while and need to be run only 1 time.
-The index into Simulation.cmd begin at 1000. The plot title begin at 1. To know which file correspond to a given plot, do <plot_title_number> + 999.
+This is 2 versions into Simulation.cmd, a short one for testing, and a long one that will generate 1496 ps plot files and can take a while. To make videos, ngspice need to be run only 1 time. This will also convert the ps files into png and create an index file of the png plot files.
+
+The index into Simulation.cmd begin at 1000. The plot title begin at 1. To know which file correspond to a given plot, do <plot_title_number> + 999.Or look at the legend at the bottom of the plot.
 To remove thesse files, you may run
 
 	rm -f *.png
